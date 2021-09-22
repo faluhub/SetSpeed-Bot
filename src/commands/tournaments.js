@@ -1,6 +1,7 @@
 const Command = require("../structures/Command.js");
 
-let seed = null;
+let challengeSeed = null;
+let eventSeed = null;
 
 module.exports = [
     new Command({
@@ -12,11 +13,18 @@ module.exports = [
         needsArgs: false,
 
         async run(message, args, bot) {
-            if (seed) {
-                await message.reply(`The current seed is: ${seed}`);
-            } else {
-                await message.reply("There currently is no seed available. Come check back later!");
+            var msg = "";
+
+            if (eventSeed) {
+                msg += `The current event seed is: ${eventSeed}`;
             }
+            if (challengeSeed) {
+                msg += `\nThe current challenge seed is: ${challengeSeed}`
+            }
+            if (msg === "") {
+                return await message.reply("There are currently no seeds available. Check back later!");
+            }
+            return await message.reply(msg);
         }
     }),
     new Command({
@@ -24,14 +32,21 @@ module.exports = [
         description: "Sets the current event seed",
         permission: "MANAGE_GUILD",
         hidden: true,
-        usage: "setseed <seed>",
-        example: "setseed WurgoAndNickAreSoSexyAndHot",
+        usage: "setseed <type> <seed>",
+        example: "setseed event WurgoAndNickAreSoSexyAndHot\nsetseed challenge BlayzarAndRivenAreSoSexyAndHot",
         needsArgs: true,
 
         async run(message, args, bot) {
-            seed = args[0];
+            const type = args[0].toLowerCase();
+            if (type === "event") {
+                eventSeed = args[1];
+            } else if (type === "challenge") {
+                challengeSeed = args[1];
+            } else {
+                return bot.SendErrorEmbed(message, `${args[0]} is not a valid type. Choose either \`event\` or \`challenge\``);
+            }
 
-            await message.reply(`The seed has been replaced with: ${seed}`);
+            await message.reply(`The ${type} seed has been replaced with: ${args[1]}`);
         }
     })
 ]

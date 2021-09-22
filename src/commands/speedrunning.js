@@ -18,7 +18,7 @@ const mods = [
 
 const extramods = [
     {name: "Pogloot", value: "[Download here!](https://github.com/AbyssStudios/PogLoot/releases/tag/v1.4.1)"},
-    {name: "Icarus Mod", value: "[Download here!](https://github.com/DuncanRuns/Icarus-Mod/releases/download/v1.0.3)"},
+    {name: "Icarus Mod", value: "[Download here!](https://github.com/DuncanRuns/Icarus-Mod/releases)"},
     {name: "HHH Mod", value: "[Download here!](https://github.com/DuncanRuns/HalfHeartHardcore-Mod/releases)"},
     {name: "InfiPearl", value: "[Download here!](https://github.com/DuncanRuns/InfiniPearl/releases)"}
 ]
