@@ -1,0 +1,8 @@
+# FOLDERS
+
+node_modules
+data
+
+# FILES
+
+package-lock.json
